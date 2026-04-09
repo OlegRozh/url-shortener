@@ -38,7 +38,7 @@ jobs:
         uses: golangci/golangci-lint-action@v4
         with:
           version: v2.0.2
-          args: --timeout=5m
+          args: --timeout=5m --output=github-actions
 
   build:
     name: Build Binary
