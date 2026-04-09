@@ -35,10 +35,10 @@ jobs:
         run: go test -v -cover ./...
 
       - name: Run linter
-        uses: golangci/golangci-lint-action@v4
+        uses: golangci/golangci-lint-action@v6
         with:
           version: v2.0.2
-          args: --timeout=5m --output=github-actions
+          args: --timeout=5m
 
   build:
     name: Build Binary
