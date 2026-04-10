@@ -35,9 +35,9 @@ jobs:
         run: go test -v -cover ./...
 
       - name: Run linter
-        uses: golangci/golangci-lint-action@v4
+        uses: golangci/golangci-lint-action@v7
         with:
-          version: v1.64.8
+          version: v2.11.4
           args: --timeout=5m
 
   build:
