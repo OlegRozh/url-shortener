@@ -28,7 +28,7 @@ func main() {
 	// Создаем контекст (например, без тайм-аута — контекст "без ограничений")
 	ctx := context.Background()
 
-	storage, err := postgres.NewPostgresStorage(ctx, &cfg)
+	storage, err := postgres.NewPostgresStorage(ctx, &cfg, log)
 	if err != nil {
 		log.Error("failed to init storage", slog.Any("error", err))
 		os.Exit(1)

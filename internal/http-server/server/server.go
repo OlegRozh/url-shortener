@@ -61,14 +61,22 @@ func (s *Server) setupRouter() *chi.Mux {
 	// Healthcheck
 	//Healthcheck
 	router.Get("/health", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		resp := map[string]string{"status": "ok"}
+
+		if err := json.NewEncoder(w).Encode(resp); err != nil {
+			// Если ошибка, логируем и отправляем 500
+			s.log.Error("failed to encode health response", sl.Err(err))
+			w.WriteHeader(http.StatusInternalServerError)
+			return
+		}
 		w.WriteHeader(http.StatusOK)
-		json.NewEncoder(w).Encode(map[string]string{"status": "ok"})
 	})
 
 	// Protected routes
 	router.Route("/urls", func(r chi.Router) {
 		r.Use(middleware.BasicAuth("url-shortener", map[string]string{
-			s.cfg.HTTPServer.User: s.cfg.HTTPServer.Password,
+			s.cfg.User: s.cfg.Password,
 		}))
 		r.Post("/url", save.New(s.log, s.storage))
 		r.Delete("/{alias}", delete.New(s.log, s.storage))
