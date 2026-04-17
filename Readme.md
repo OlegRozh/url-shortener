@@ -96,5 +96,9 @@ crypto/rand — Генерация безопасных алиасов
 - **Promtail** — сборщик логов из Docker контейнеров
 - **Grafana** — визуализация и анализ логов
 
-
+**Запустить локально:**
+```bash
+git clone ... && cd url-shortener
+docker-compose up
+# API: http://localhost:8080
 
