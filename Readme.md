@@ -54,12 +54,11 @@ HTTP_SERVER_PASSWORD=qwerty1234
 Выполняет редирект на оригинальный URL.
 
 ### **Метод**: GET /{alias
-### **Пример** GET /abc123defg
+Пример: GET /abc123defg
 ### **Ответ**
 - **Статус**: `307 Temporary Redirect`
-- **Заголовок**: 
-
-Location: https://example.com/very/long/path?param=value
+- **Заголовок**: Location: https://example.com/very/long/path?param=value
+- 
 > 🌐 Браузер или HTTP-клиент автоматически перейдёт по оригинальной ссылке.
 
 ## 4. 🗑️ Удалить URL по алиасу
