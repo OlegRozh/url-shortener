@@ -9,7 +9,7 @@ docker-compose up
 ```
 
 - Все запросы и ответы используют формат `JSON`.
-- Устанавливайте заголовок:
+- Устанавливайте заголовок: Content-Type: application/json
 
 API будет доступен по адресу:  
 👉 [http://localhost:8080](http://localhost:8080)
