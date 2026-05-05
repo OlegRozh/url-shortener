@@ -103,7 +103,6 @@ func (s *Server) Start() error {
 		}
 	}()
 
-	// Ждём сигнал завершения
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
 	<-quit
