@@ -25,7 +25,7 @@ func main() {
 	log := setupLogger(cfg.Env)
 	log.Info("starting url-shortener", slog.String("env", cfg.Env))
 	log.Debug("debug messages are enabled")
-	// Создаем контекст (например, без тайм-аута — контекст "без ограничений")
+
 	ctx := context.Background()
 
 	storage, err := postgres.NewPostgresStorage(ctx, &cfg, log)

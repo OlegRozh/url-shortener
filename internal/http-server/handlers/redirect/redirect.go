@@ -26,7 +26,6 @@ func New(log *slog.Logger, urlGetter URLGetter) http.HandlerFunc {
 			slog.String("request_id", middleware.GetReqID(r.Context())),
 		)
 
-		// 1. Получаем alias из URL (например, /goog → alias = "goog")
 		alias := chi.URLParam(r, "alias")
 		if alias == "" {
 			log.Info("alias is empty")
@@ -36,7 +35,6 @@ func New(log *slog.Logger, urlGetter URLGetter) http.HandlerFunc {
 
 		log.Info("redirecting", slog.String("alias", alias))
 
-		// 2. Ищем оригинальный URL в БД
 		originalURL, err := urlGetter.GetURL(r.Context(), alias)
 		if err != nil {
 			if errors.Is(err, ErrURLNotFound) {

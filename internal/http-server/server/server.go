@@ -28,16 +28,14 @@ type Server struct {
 	storage    Storage
 }
 
-// Storage интерфейс для хранилища
 type Storage interface {
 	SaveURL(ctx context.Context, urlToSave string, alias string) (int64, error)
 	GetURL(ctx context.Context, alias string) (string, error)
 	DeleteURL(ctx context.Context, alias string) error
-	Ping(ctx context.Context) error // 👈 добавить
+	Ping(ctx context.Context) error
 	Close()
 }
 
-// New создаёт новый сервер (конструктор)
 func New(log *slog.Logger, cfg *config.Config, storage Storage) *Server {
 	return &Server{
 		log:     log,
@@ -46,7 +44,6 @@ func New(log *slog.Logger, cfg *config.Config, storage Storage) *Server {
 	}
 }
 
-// setupRouter настраивает маршруты
 func (s *Server) setupRouter() *chi.Mux {
 	router := chi.NewRouter()
 
